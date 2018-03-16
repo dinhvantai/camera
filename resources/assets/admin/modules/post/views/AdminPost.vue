@@ -164,10 +164,6 @@
         },
 
         computed: {
-            loading() {
-                return this.$store.state.storeLoading.loading
-            },
-
             currentPage() {
                 return this.$store.state.storeAdminPost.currentPage
             },

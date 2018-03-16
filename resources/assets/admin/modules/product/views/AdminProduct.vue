@@ -165,12 +165,11 @@ import category from 'admin/modules/category/store';
         },
 
         computed: {
-            loading() {
-                return this.$store.state.storeLoading.loading
-            },
-
-            currentPage() {
-                return this.$store.state.storeAdminProduct.currentPage
+            currentPage: {
+                get() {
+                    return this.$store.state.storeAdminProduct.currentPage
+                },
+                set(value) {}
             },
 
             valueFilter() {

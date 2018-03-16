@@ -188,10 +188,6 @@
         },
 
         computed: {
-            loading() {
-                return this.$store.state.storeLoading.loading
-            },
-
             items() {
                 return this.$store.state.storeAdminBanner.banners
             },

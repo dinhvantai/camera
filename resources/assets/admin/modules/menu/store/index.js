@@ -42,11 +42,11 @@ const mutations = {
 
 const actions = {
     async callFetchMenus({ commit }, { vue, params }) {
-        let loading = vue.$store.state.storeLoading.loading
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: true })
-        let response = await callApiFetchMenus(params);
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: false })
-        
+        let mainLoading = vue.$store.state.storeLoading.mainLoading
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: true })
+        let response = await callApiFetchMenus(params)
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: false })
+
         if (response.status == 200) {
             return commit(ADMIN_MENU_FETCH, { menus: response.data });
         }
@@ -56,12 +56,12 @@ const actions = {
 
     async callMenuAdd({ commit }, { vue, params }) {
         let modalAdd = vue.$store.state.storeAdminMenu.modalAdd
-        
-        let loading = vue.$store.state.storeLoading.loading
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: true })
+
+        let mainLoading = vue.$store.state.storeLoading.mainLoading
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: true })
         let response = await callApiAddMenu(params)    
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: false })
-    
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: false })
+        
         if (response.status == 200) {
             commit(ADMIN_MENU_MODAL_ADD, { modalAdd: { ...modalAdd, open: false }})
             vue.$store.dispatch('callFetchMenus', { vue, params })
@@ -81,11 +81,11 @@ const actions = {
     async callMenuEdit({ commit }, { vue, id, params }) {
         let modalEdit = vue.$store.state.storeAdminMenu.modalEdit
 
-        let loading = vue.$store.state.storeLoading.loading
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: true })        
+        let mainLoading = vue.$store.state.storeLoading.mainLoading
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: true })
         let response = await callApiEditMenu(id, params)
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: false })
-    
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: false })
+
         if (response.status == 200) {
             commit(ADMIN_MENU_MODAL_EDIT, { modalEdit: { ...modalEdit, open:false } })
             vue.$store.dispatch('callFetchMenus', { vue, params })
@@ -103,10 +103,11 @@ const actions = {
     },
 
     async callMenuDelete({ commit }, { vue, id }) {
-        let loading = vue.$store.state.storeLoading.loading
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: true })        
+
+        let mainLoading = vue.$store.state.storeLoading.mainLoading
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: true })
         let response = await callApiDeleteMenu(id)
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: false })
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: false })
 
         if (response.status == 200) {
             vue.$store.dispatch('callFetchMenus', { vue })
