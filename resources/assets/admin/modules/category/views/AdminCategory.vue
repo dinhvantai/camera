@@ -187,10 +187,6 @@
         },
 
         computed: {
-            loading() {
-                return this.$store.state.storeLoading.loading
-            },
-
             items() {
                 let categories = this.$store.state.storeAdminCategory.categories
 

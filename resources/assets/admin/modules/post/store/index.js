@@ -44,10 +44,10 @@ const mutations = {
 
 const actions = {
     async callFetchPosts({ commit }, { vue, params }) {
-        let loading = vue.$store.state.storeLoading.loading
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: true })
-        let response = await callApiFetchPosts(params);
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: false })
+        let mainLoading = vue.$store.state.storeLoading.mainLoading
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: true })
+        let response = await callApiFetchPosts(params)
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: false })
 
         if (response.status == 200) {
             return commit(ADMIN_POST_FETCH, { posts: response.data });
@@ -61,10 +61,10 @@ const actions = {
     },
 
     async callPostAdd({ commit }, { vue, params }) {
-        let loading = vue.$store.state.storeLoading.loading
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: true })
+        let mainLoading = vue.$store.state.storeLoading.mainLoading
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: true })
         let response = await callApiAddPost(params)
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: false })
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: false })
 
         if (response.status == 200) {
             vue.$toaster.success(response.data.message);
@@ -76,10 +76,10 @@ const actions = {
     },
 
     async callPostShow( { commit }, { vue, id }) {
-        let loading = vue.$store.state.storeLoading.loading
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: true })
+        let mainLoading = vue.$store.state.storeLoading.mainLoading
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: true })
         let response = await callApiShowPost(id)
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: false })
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: false })
         
         if (response.status == 200) {
             return commit(ADMIN_POST_SET_POST, { post: response.data })
@@ -91,11 +91,11 @@ const actions = {
     },
 
     async callPostEdit({ commit }, { vue, id, params }) {
-        let loading = vue.$store.state.storeLoading.loading
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: true })
+        let mainLoading = vue.$store.state.storeLoading.mainLoading
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: true })
         let response = await callApiEditPost(id, params)
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: false })
-        
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: false })
+
         if (response.status == 200) {
             vue.$toaster.success(response.data.message)
             
@@ -106,10 +106,10 @@ const actions = {
     },
 
     async callPostDelete({ commit }, { vue, id }) {
-        let loading = vue.$store.state.storeLoading.loading
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: true })
+        let mainLoading = vue.$store.state.storeLoading.mainLoading
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: true })
         let response = await callApiDeletePost(id)
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: false })
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: false })
 
         if (response.status == 200) {
             commit(ADMIN_POST_DELETE, { id })

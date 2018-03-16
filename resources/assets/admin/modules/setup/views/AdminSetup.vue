@@ -143,9 +143,9 @@ export default {
     },
 
     async mounted() {
-        this.$store.dispatch('setAdminLoading', { ...this.loading, show: true })
+        this.$store.dispatch('setAdminMainLoading', { ...this.mainLoading, show: true })
         let response = await axios.get('/setups')
-        this.$store.dispatch('setAdminLoading', { ...this.loading, show: false })
+        this.$store.dispatch('setAdminMainLoading', { ...this.mainLoading, show: false })
 
         if (response.status == 200) {
             let formData = response.data;
@@ -158,6 +158,12 @@ export default {
         this.$toaster.error(Helper.getFirstError(response, this.$i18n.t('textDefaultErrorRequest')))
 
         return this.$router.push({ path: '/dashboard' })
+    },
+
+    computed: {
+        mainLoading() {
+            return this.$store.state.storeLoading.mainLoading
+        },
     },
 
     data() {
@@ -243,9 +249,9 @@ export default {
         async clickSubmitEdit() {
             let params = this.convertDataSubmit();
 
-            this.$store.dispatch('setAdminLoading', { ...this.loading, show: true })
+            this.$store.dispatch('setAdminMainLoading', { ...this.mainLoading, show: true })
             let response = await axios.put('/setups', params)
-            this.$store.dispatch('setAdminLoading', { ...this.loading, show: false })
+            this.$store.dispatch('setAdminMainLoading', { ...this.mainLoading, show: false })
 
             if (response.status == 200) {
                 this.$toaster.success(response.data.message);

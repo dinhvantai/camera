@@ -51,10 +51,10 @@ const mutations = {
 
 const actions = {
     async callFetchCategories({ commit }, { vue, params }) {
-        let loading = vue.$store.state.storeLoading.loading
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: true })
-        let response = await callApiFetchCategories(params);
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: false })
+        let mainLoading = vue.$store.state.storeLoading.mainLoading
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: true })
+        let response = await callApiFetchCategories(params)
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: false })
 
         if (response.status == 200) {
             let categories = response.data.map((category) => {
@@ -73,10 +73,10 @@ const actions = {
     async callCategoryAdd({ commit }, { vue, params }) {
         let modalAdd = vue.$store.state.storeAdminCategory.modalAdd
 
-        let loading = vue.$store.state.storeLoading.loading
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: true })
+        let mainLoading = vue.$store.state.storeLoading.mainLoading
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: true })
         let response = await callApiAddCategory(params)
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: false })
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: false })
 
         if (response.status == 200) {
             commit(ADMIN_CATEGORY_MODAL_ADD, { modalAdd: { ...modalAdd, open:false } })
@@ -97,10 +97,10 @@ const actions = {
     async callCategoryEdit({ commit }, { vue, id, params }) {
         let modalEdit = vue.$store.state.storeAdminCategory.modalEdit
 
-        let loading = vue.$store.state.storeLoading.loading
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: true })
+        let mainLoading = vue.$store.state.storeLoading.mainLoading
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: true })
         let response = await callApiEditCategory(id, params)
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: false })
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: false })
 
         if (response.status == 200) {
             commit(ADMIN_CATEGORY_MODAL_EDIT, { modalEdit: { ...modalEdit, open:false } })
@@ -119,10 +119,10 @@ const actions = {
     },
 
     async callCategoryDelete({ commit }, { vue, id }) {
-        let loading = vue.$store.state.storeLoading.loading
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: true })
+        let mainLoading = vue.$store.state.storeLoading.mainLoading
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: true })
         let response = await callApiDeleteCategory(id)
-        vue.$store.dispatch('setAdminLoading', { ...loading, show: false })
+        vue.$store.dispatch('setAdminMainLoading', { ...mainLoading, show: false })
 
         if (response.status == 200) {
             vue.$store.dispatch('callFetchCategories', { vue })

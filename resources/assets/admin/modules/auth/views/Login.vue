@@ -69,7 +69,8 @@ export default {
                 && auth.token && auth.token.access_token
         }
 
-        let auth = JSON.parse(localStorage.getItem(STORAGE_AUTH)) || { user: {}, token: {} };
+        let defaultAuth = JSON.stringify({ user: {}, token: {} })
+        let auth = JSON.parse(localStorage.getItem(STORAGE_AUTH) || defaultAuth)
 
         if (checkAuthAdmin(auth)) {
             return this.$router.push({ path: '/dashboard' })

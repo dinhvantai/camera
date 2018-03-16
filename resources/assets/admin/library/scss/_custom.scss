@@ -26,7 +26,7 @@
 }
 
 .splash-screen {
-    z-index: 2;
+    z-index: 1000;
 }
 
 .splash-screen .splash-overlay {
@@ -35,8 +35,8 @@
     z-index: 100000;
     position: fixed;
     top: 0;
-    background: #000;
-    opacity: .2;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.28);
+    background: #fff;
 }
 
 .splash-screen .splash-spinner {
@@ -54,5 +54,20 @@
     border: 4px solid #f44336;
     border-right-color: transparent;
     border-radius: 50%;
+}
+
+.app-body {
+    .splash-screen .splash-overlay {
+        z-index: 10000;
+        position: absolute;
+        top: 0px;
+    }
+    
+    .splash-screen .splash-spinner {
+        position: absolute;
+        z-index: 10000;
+        left: $sidebar-width;
+        right: 0px;
+    }
 }
 

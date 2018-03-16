@@ -55,17 +55,17 @@ const router =  new VueRouter({
                     },
                     children: [
                         {
-                            path: '/products',
+                            path: '',
                             name: 'Danh sách sản phẩm',
                             component: AdminProduct
                         },
                         {
-                            path: '/products/add',
+                            path: 'add',
                             name: 'Thêm mới sản phẩm',
                             component: AdminProductAdd
                         },
                         {
-                            path: '/products/edit/:id',
+                            path: 'edit/:id',
                             name: 'Cập nhật sản phẩm',
                             component: AdminProductEdit
                         }
@@ -81,17 +81,17 @@ const router =  new VueRouter({
                     },
                     children: [
                         {
-                            path: '/posts',
+                            path: '',
                             name: 'Danh sách bài viết',
                             component: AdminPost
                         },
                         {
-                            path: '/posts/add',
+                            path: 'add',
                             name: 'Thêm mới bài viết',
                             component: AdminPostAdd
                         },
                         {
-                            path: '/posts/edit/:id',
+                            path: 'edit/:id',
                             name: 'Cập nhật bài viết',
                             component: AdminPostEdit
                         }
