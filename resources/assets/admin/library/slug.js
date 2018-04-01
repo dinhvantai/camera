@@ -1,4 +1,4 @@
-export function ChangeToSlug(title)
+export default function(title)
 {
     let slug = title.toLowerCase();
 
